@@ -7,9 +7,14 @@
     var Web3 = require('web3');
     var web3 = new Web3();
     web3.setProvider(new web3.providers.HttpProvider("https://mainnet.infura.io/cyNgApVB0JFY4LaZomim"));
-    var account = web3.eth.accounts[ 1 ];
+	//var accountbal = web3.eth.getBalance('0x000000000000000000000000000000000000dead');
+	//console.log(accountbal);
+	//var newaddress = web3.eth.accounts.create();
+	//console.log('newaddress');
+    var account = '0x000000000000000000000000000000000000dead';
     var balance = web3.eth.getBalance(account);
-    console.log('account: ' + account);
+	balance = balance/1000000000000000000;
+    console.log('account: Eth;' + account);
     console.log('balance: ' + balance);
     document.getElementById('account').innerText = account;
     document.getElementById('balance').innerText = balance;
@@ -18,7 +23,7 @@
 </head>
 <body onload="testETH()">
     <h1>My first Ethereum Webpage</h1>
-    Account:<div id="account"></div>
-    Balance:<div id="balance"></div>
+    Account: <div id="account"></div>
+    Balance: Eth;<div id="balance"></div>
 </body>
 </html>
