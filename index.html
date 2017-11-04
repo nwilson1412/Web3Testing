@@ -22,6 +22,7 @@
     console.log('account: ' + account);
     console.log('balance: ' + balance);
 	
+	//web3.eth.getAccounts().then(console.log)
 	//var accountactive = web3.eth.accounts;
 	//var balanceactive =  web3.fromWei(web3.eth.getBalance(accountactive[0]),"ether");
     //console.log('account: ' + accountactive);
@@ -34,6 +35,15 @@
 	//active account (Mist/MetaMask)
 	//document.getElementById('accountactive').innerText = accountactive;
     //document.getElementById('balanceactive').innerText = balanceactive;
+		
+	var filter = web3.eth.filter('pending');
+    filter.watch(function(error, result) {
+      if (!error) {
+        web3.eth.getTransaction(result, function(error, data) {
+          if (!error) $("#newTxs tr:first").after(''+data.from+''+data.to+' '+web3.fromWei(data.value,'ether').toString()+' ETH ');
+        });
+      }
+    });
 	
   }
 </script>
